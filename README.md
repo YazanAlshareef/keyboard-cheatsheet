@@ -18,21 +18,21 @@ An AI coding assistant wrote the first version of the files and the shortcut lis
 
 ## What broke and how I fixed it
 
-- `node --test test/` failed on Node 24 with a bare "test failed". Fix: point it at the files, `node --test test/*.test.mjs`.
+- `node --test test/` failed on Node 24 with a bare "test failed". A shell glob does not work on Windows with Node 18 to 20 either. Fix: plain `node --test`, which finds files in `test/` by itself on every version.
 - My "no AI tool shortcuts" test matched the word "cursor" inside "multi-cursor" (a real VS Code feature). Fix: the test now checks only for AI product names.
 - Browser console showed a 404 for `favicon.ico`. Fix: an empty inline icon in `index.html`.
-- A first draft had shortcuts the docs do not list for Windows (Excel `Ctrl+Shift+L`, `Ctrl+R`, `Ctrl+F`, `Ctrl+H`, VS Code "new terminal"). I removed them. See Sources.
+- A first draft had shortcuts I could not confirm, so I removed them. I re-read the Excel page: `Ctrl+Shift+L`, `Ctrl+F` and `Ctrl+H` appear only in the Mac or web sections, not in the Windows tables. `Ctrl+R` in the Windows section means "rename the table" in Power Pivot, not fill right. VS Code "new terminal" is not on the default keybindings page.
 
 ## How to run
 
-You need Node 18 or newer.
+You need Node 18 or newer and Python 3 (only to serve the files).
 
 ```bash
 npm test
 npm start
 ```
 
-`npm test` checks the JSON file and the search function. `npm start` serves the folder with `npx serve`; open the address it prints. The page must be served over HTTP, because it loads `shortcuts.json` with `fetch`. Any static server works, for example `python -m http.server`.
+`npm test` checks the JSON file and the search function. `npm start` runs `python -m http.server 8000`; open http://localhost:8000. The page must be served over HTTP, because it loads `shortcuts.json` with `fetch`. Any static server works.
 
 There is no build step. `npm run build` just runs the tests.
 
@@ -43,7 +43,7 @@ There is no build step. `npm run build` just runs the tests.
 - 112 shortcuts, a small selection and not a full list.
 - Copy needs a secure context (HTTPS or localhost). The page shows a message if the browser blocks it.
 - "Ctrl+Plus" and "Ctrl+Minus" are spelled out so the search box can find them.
-- Verified on 2026-11-10. Official pages change; recheck before trusting an old copy.
+- Checked on 2026-11-10: each shortcut was compared by hand-run page fetches against the official pages in Sources. This is not an automated check and the pages can change.
 - Not deployed. The Vercel command line tool was not installed, so I skipped the deploy.
 
 ## Sources

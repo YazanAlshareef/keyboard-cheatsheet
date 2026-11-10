@@ -9,8 +9,8 @@
   - The theme button flips light/dark and remembers it in `localStorage`.
 - `search.js`: one function, `filterShortcuts`. It splits your query into words and keeps shortcuts that contain all of them. Kept separate so the test can use it without a browser.
 - `shortcuts.json`: all the data. `sources` maps each app to its official docs page. `shortcuts` is a list of `{app, keys, action}`.
-- `test/shortcuts.test.mjs`: the tests, run with Node's built-in runner. They check the sources, that each entry has the three fields as non-empty strings, that no app and keys pair repeats, that no AI product name appears, and that search behaves.
-- `package.json`: scripts `test`, `build` (runs the tests) and `start` (serves the folder). No dependencies.
+- `test/shortcuts.test.mjs`: the tests, run with Node's built-in runner. They check the sources, that each entry has the three fields as non-empty strings, that no app and keys pair repeats, that no AI product name appears in app, action or keys, and that search behaves.
+- `package.json`: scripts `test`, `build` (runs the tests) and `start` (serves the folder with Python). No dependencies.
 - `.gitignore`: files git should skip (node_modules, local tool folders, env files).
 - `LICENSE`: MIT licence.
 - `README.md`: what the project is, how to run it, what broke, limits and sources.
