@@ -16,7 +16,7 @@
     {"app": "Windows 11", "keys": "Win+Left", "action": "Snap window to the left side"},
     {"app": "Windows 11", "keys": "Win+Right", "action": "Snap window to the right side"},
     {"app": "Windows 11", "keys": "Win+Up", "action": "Maximize the active window"},
-    {"app": "Windows 11", "keys": "Win+Down", "action": "Minimize the active window"},
+    {"app": "Windows 11", "keys": "Win+Down", "action": "Restore or minimize the window"},
     {"app": "Windows 11", "keys": "Win+I", "action": "Open Settings"},
     {"app": "Windows 11", "keys": "Win+R", "action": "Open the Run dialog"},
     {"app": "Windows 11", "keys": "Win+.", "action": "Open the emoji panel"},

@@ -55,7 +55,7 @@ Every shortcut was compared against these official pages on 2026-11-10. A shortc
 - Excel: https://support.microsoft.com/en-us/office/keyboard-shortcuts-in-excel-1798d9d5-842a-42b8-9c99-9b7213f0040f
 - Chrome: https://support.google.com/chrome/answer/157179
 
-Wording note: Windows 11 `Win+A` is shown as "Open Quick Settings"; the page I read called it the action center. Windows lists the Excel time shortcut as `Ctrl+Shift+:`.
+Wording note: `Win+Down` is shown as "Restore or minimize the window"; the Windows 11 page says only "Minimize the active window", and the restore step on a maximized window was added from how the key behaves. Windows 11 `Win+A` is shown as "Open Quick Settings"; the page I read called it the action center. Windows lists the Excel time shortcut as `Ctrl+Shift+:`.
 
 ## Licence
 
