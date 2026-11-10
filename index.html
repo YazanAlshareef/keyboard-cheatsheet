@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Keyboard Cheatsheet</title>
+  <meta name="description" content="Searchable keyboard shortcuts for Windows 11, VS Code, Excel and Chrome.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Keyboard Cheatsheet</h1>
+    <button id="theme" type="button" aria-label="Switch theme">Theme</button>
+  </header>
+  <main>
+    <label for="q">Search shortcuts <span class="hint">(press <kbd>/</kbd> to focus)</span></label>
+    <input id="q" type="search" autocomplete="off" role="combobox" aria-expanded="true"
+           aria-controls="list" aria-autocomplete="list" placeholder="e.g. copy line, ctrl shift p">
+    <div id="filters" role="group" aria-label="Filter by app"></div>
+    <p id="count" aria-live="polite"></p>
+    <ul id="list" role="listbox" aria-label="Shortcuts"></ul>
+    <p class="hint"><kbd>Up</kbd>/<kbd>Down</kbd> move, <kbd>Enter</kbd> copies the shortcut.</p>
+    <p id="status" class="sr" role="status"></p>
+  </main>
+  <footer>Data checked against official docs. See README for sources. No tracking, no cookies.</footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
