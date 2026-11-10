@@ -33,8 +33,8 @@ test("no duplicate app+keys pair", () => {
 });
 
 test("no AI tool shortcuts", () => {
-  const bad = /copilot|chatgpt|gemini/i;
-  for (const s of data.shortcuts) assert.ok(!bad.test(`${s.app} ${s.action}`), s.action);
+  const bad = /copilot|chatgpt|gemini|(?<!multi-)cursor|ai assistant/i;
+  for (const s of data.shortcuts) assert.ok(!bad.test(`${s.app} ${s.keys} ${s.action}`), s.action);
 });
 
 test("search: all words must match, app filter works", () => {
