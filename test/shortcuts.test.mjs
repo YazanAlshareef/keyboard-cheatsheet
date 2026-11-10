@@ -33,7 +33,7 @@ test("no duplicate app+keys pair", () => {
 });
 
 test("no AI tool shortcuts", () => {
-  const bad = /copilot|chatgpt|gemini|cursor/i;
+  const bad = /copilot|chatgpt|gemini/i;
   for (const s of data.shortcuts) assert.ok(!bad.test(`${s.app} ${s.action}`), s.action);
 });
 

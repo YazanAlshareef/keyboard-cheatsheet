@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Searchable keyboard shortcuts for Windows 11, VS Code, Excel and Chrome",
   "scripts": {
-    "test": "node --test test/",
+    "test": "node --test test/*.test.mjs",
     "build": "npm test",
     "start": "npx --yes serve ."
   },
