@@ -1,4 +1,4 @@
-import { filterShortcuts } from "./search.js";
+import { filterShortcuts, shouldFocusSearch } from "./search.js";
 
 const $ = (id) => document.getElementById(id);
 const q = $("q"), list = $("list"), filters = $("filters"), count = $("count"), status = $("status");
@@ -69,8 +69,7 @@ q.addEventListener("keydown", (e) => {
   else if (e.key === "Enter") { e.preventDefault(); copy(); }
 });
 document.addEventListener("keydown", (e) => {
-  const typing = /^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName);
-  if (e.key === "/" && !typing) { e.preventDefault(); q.focus(); q.select(); }
+  if (shouldFocusSearch(e, document.activeElement.tagName)) { e.preventDefault(); q.focus(); q.select(); }
 });
 
 const root = document.documentElement;

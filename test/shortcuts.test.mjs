@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { filterShortcuts } from "../search.js";
+import { filterShortcuts, shouldFocusSearch } from "../search.js";
 
 const data = JSON.parse(readFileSync(new URL("../shortcuts.json", import.meta.url), "utf8"));
 const apps = ["Windows 11", "VS Code", "Excel", "Chrome"];
@@ -41,4 +41,18 @@ test("search: all words must match, app filter works", () => {
   assert.equal(filterShortcuts(data.shortcuts, "ctrl shift p", "VS Code")[0].keys, "Ctrl+Shift+P");
   assert.equal(filterShortcuts(data.shortcuts, "zzzz").length, 0);
   assert.ok(filterShortcuts(data.shortcuts, "", "Excel").every((s) => s.app === "Excel"));
+});
+
+test("search: 'windows' and 'control' match Win and Ctrl keys", () => {
+  assert.ok(filterShortcuts(data.shortcuts, "windows lock").some((s) => s.keys === "Win+L"));
+  assert.ok(filterShortcuts(data.shortcuts, "control shift esc").some((s) => s.keys === "Ctrl+Shift+Esc"));
+});
+
+test("slash focus: only a bare / outside text fields", () => {
+  const key = (k, mods = {}) => ({ key: k, ...mods });
+  assert.equal(shouldFocusSearch(key("/"), "BODY"), true);
+  assert.equal(shouldFocusSearch(key("/"), "BUTTON"), true);
+  assert.equal(shouldFocusSearch(key("/"), "INPUT"), false);
+  assert.equal(shouldFocusSearch(key("/", { ctrlKey: true }), "BODY"), false);
+  assert.equal(shouldFocusSearch(key("a"), "BODY"), false);
 });
