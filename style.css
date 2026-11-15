@@ -1,15 +1,15 @@
 :root {
   --bg: #ffffff; --fg: #1a1a1a; --muted: #555; --card: #f3f4f6;
-  --accent: #0b5cd5; --border: #c9ced6; --focus: #b45309;
+  --accent: #0b5cd5; --border: #c9ced6; --focus: #b45309; --edge: #767676;
 }
 :root[data-theme="dark"] {
   --bg: #121417; --fg: #eceef1; --muted: #a3a9b3; --card: #1d2026;
-  --accent: #6aa8ff; --border: #3a3f48; --focus: #fbbf24;
+  --accent: #6aa8ff; --border: #3a3f48; --focus: #fbbf24; --edge: #7b828d;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #121417; --fg: #eceef1; --muted: #a3a9b3; --card: #1d2026;
-    --accent: #6aa8ff; --border: #3a3f48; --focus: #fbbf24;
+    --accent: #6aa8ff; --border: #3a3f48; --focus: #fbbf24; --edge: #7b828d;
   }
 }
 * { box-sizing: border-box; }
@@ -20,7 +20,7 @@ h1 { font-size: 1.4rem; margin: 0; }
 footer { color: var(--muted); font-size: .85rem; padding-bottom: 24px; padding-top: 16px; }
 label { display: block; margin: 16px 0 4px; font-weight: 600; }
 .hint { color: var(--muted); font-weight: 400; font-size: .9rem; }
-input, button { font: inherit; color: var(--fg); background: var(--card); border: 1px solid var(--border); border-radius: 6px; }
+input, button { font: inherit; color: var(--fg); background: var(--card); border: 1px solid var(--edge); border-radius: 6px; }
 input { width: 100%; padding: 10px 12px; }
 button { padding: 6px 12px; cursor: pointer; }
 button[aria-pressed="true"] { background: var(--accent); color: var(--bg); border-color: var(--accent); }
