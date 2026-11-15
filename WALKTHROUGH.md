@@ -1,23 +1,24 @@
-# Walkthrough: every file in plain English
+# Walkthrough: every file
 
-- `index.html`: the page skeleton. A title, a theme button, a search box, app filter buttons, an empty list, a hidden message line for screen readers. It loads `style.css` and `app.js`.
-- `style.css`: colours and layout. Colours are variables on `:root`. A dark set applies when the system is dark, or when the theme button sets `data-theme`. `:focus-visible` draws a thick outline so keyboard focus is always visible. The selected result has the same outline. A small-screen rule stacks each result.
-- `app.js`: the behaviour. It loads `shortcuts.json`, builds the filter buttons, and draws the list. Keys:
-  - `/` focuses the search box (only when you are not already typing).
-  - Up and Down change which result is selected, wrapping at the ends. Focus stays in the search box; `aria-activedescendant` tells screen readers which result is selected.
-  - Enter copies the selected shortcut with `navigator.clipboard`, then says "Copied ..." in the status line.
-  - The theme button flips light/dark and remembers it in `localStorage`.
-- `search.js`: one function, `filterShortcuts`. It splits your query into words and keeps shortcuts that contain all of them. Kept separate so the test can use it without a browser.
-- `shortcuts.json`: all the data. `sources` maps each app to its official docs page. `shortcuts` is a list of `{app, keys, action}`.
-- `test/shortcuts.test.mjs`: the tests, run with Node's built-in runner. They check the sources, that each entry has the three fields as non-empty strings, that no app and keys pair repeats, that no AI product name appears in app, action or keys, and that search behaves.
-- `package.json`: scripts `test`, `build` (runs the tests) and `start` (serves the folder with Python). No dependencies.
-- `.gitignore`: files git should skip (node_modules, local tool folders, env files).
-- `LICENSE`: MIT licence.
-- `README.md`: what the project is, how to run it, what broke, limits and sources.
-- `WALKTHROUGH.md`: this file.
+- `index.html`: the page skeleton. A title, a theme button, a search box, filter buttons, an empty list, and a hidden status line for screen readers. It loads `style.css` and `app.js`.
+- `style.css`: colours and layout. The colours are variables on `:root`. The dark set applies when the system is dark, or when the theme button sets `data-theme`. `--edge` is a darker border just for inputs and buttons, so they pass the 3:1 contrast rule for controls. `:focus-visible` draws a thick outline, and the selected result gets the same one. Under 480px each result stacks.
+- `app.js`: the behaviour. It loads `shortcuts.json`, builds the filter buttons and draws the list.
+  - `/` focuses the search box, through `shouldFocusSearch` in `search.js`.
+  - Up and Down move the selected result and wrap at the ends. Focus never leaves the search box. `aria-activedescendant` tells a screen reader which result is selected.
+  - Enter or a click copies the keys with `navigator.clipboard` and says "Copied ..." in the status line. If the browser refuses, it says so.
+  - The theme button flips light and dark and saves the choice in `localStorage`.
+  - If `shortcuts.json` fails to load, the count line says why.
+- `search.js`: two small functions. `filterShortcuts` splits the query into words, maps "windows" to "win" and "control" to "ctrl", and keeps shortcuts containing every word. `shouldFocusSearch` decides if a keypress should jump to search. They live apart from `app.js` so the tests can run them without a browser.
+- `shortcuts.json`: all the data. `sources` maps each app to its docs page, and `shortcuts` is a list of `{app, keys, action}`.
+- `test/shortcuts.test.mjs`: seven tests on Node's built-in runner. They check the sources, that each entry has the three fields as non-empty strings, that no app and keys pair repeats, that no AI product name shows up, and how search, the aliases and the `/` rule behave.
+- `.github/workflows/ci.yml`: runs `npm test` on GitHub for each push and pull request. No secrets.
+- `docs/`: the screenshots used in the README.
+- `package.json`: the scripts `test`, `build` (which only runs the tests) and `start` (Python's static server). No dependencies.
+- `.gitignore`, `LICENSE` (MIT), `README.md` and this file.
 
 ## Questions I should be ready for
 
-- Why no framework? The page is one list with a filter. Plain JavaScript is enough and has nothing to install.
-- Why does it need a server? Browsers block `fetch` of local files. Any static server fixes that.
-- Why keep the data in JSON? The test can check it, and adding a shortcut needs no code change.
+- Why no framework? The page is a list with a filter. Plain JavaScript does that and there is nothing to install.
+- Why does it need a server? Browsers block `fetch` on local files. Any static server fixes it.
+- Why JSON? The tests can check it, and a new shortcut needs no code change.
+- What would I do next? Run Lighthouse, try a screen reader, and decide whether Mac keys belong here.
