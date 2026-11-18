@@ -24,6 +24,7 @@ function render() {
     return li;
   }));
   count.textContent = `${shown.length} shortcut${shown.length === 1 ? "" : "s"}`;
+  q.setAttribute("aria-expanded", String(shown.length > 0));
   if (shown.length) q.setAttribute("aria-activedescendant", `r${active}`);
   else q.removeAttribute("aria-activedescendant");
 }
