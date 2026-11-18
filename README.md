@@ -58,6 +58,11 @@ An AI coding assistant wrote the first version of the files and the shortcut lis
 - A first draft had shortcuts I could not confirm, so I took them out. On the Excel page `Ctrl+Shift+L`, `Ctrl+F` and `Ctrl+H` show up only in the Mac or web sections, not the Windows tables. `Ctrl+R` in the Windows section means "rename the table" in Power Pivot, not fill right. VS Code "new terminal" is not on the default keybindings page.
 - In my own review I found that `/` also fired on Ctrl+/ and swallowed it, and that searching "windows lock" found nothing because the data says "Win". Both are fixed and each has a test.
 
+## Diagrams
+
+- [Components](docs/diagrams/components.md): the files and what depends on what.
+- [Flows](docs/diagrams/flows.md): page load, and search and copy.
+
 ## Checks I ran
 
 - `npm test`: 7 tests pass locally (JSON shape, no duplicates, no AI names, search, aliases, the `/` rule).
