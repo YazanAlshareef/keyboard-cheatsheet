@@ -46,16 +46,12 @@ flowchart LR
   T --> S
 ```
 
-## How an AI coding assistant helped
-
-An AI coding assistant wrote the first version of the files and the shortcut list from the official pages below. I read the code, ran the tests and checked the page by hand. `WALKTHROUGH.md` says what each file does.
-
 ## What broke and how I fixed it
 
 - `node --test test/` failed on Node 24 with a bare "test failed", and a shell glob does not expand on Windows with Node 18 to 20. Plain `node --test` finds the files in `test/` on every version, so that is what I use.
 - My "no AI tool shortcuts" test matched "cursor" inside "multi-cursor", which is a real VS Code feature. The test now looks only for AI product names.
 - The browser console showed a 404 for `favicon.ico`. I added an empty inline icon in `index.html`.
-- A first draft had shortcuts I could not confirm, so I took them out. On the Excel page `Ctrl+Shift+L`, `Ctrl+F` and `Ctrl+H` show up only in the Mac or web sections, not the Windows tables. `Ctrl+R` in the Windows section means "rename the table" in Power Pivot, not fill right. VS Code "new terminal" is not on the default keybindings page.
+- Some shortcuts I could not confirm are not in the list. On the Excel page `Ctrl+Shift+L`, `Ctrl+F` and `Ctrl+H` show up only in the Mac or web sections, not the Windows tables. `Ctrl+R` in the Windows section means "rename the table" in Power Pivot, not fill right. VS Code "new terminal" is not on the default keybindings page.
 - In my own review I found that `/` also fired on Ctrl+/ and swallowed it, and that searching "windows lock" found nothing because the data says "Win". Both are fixed and each has a test.
 
 ## Diagrams
