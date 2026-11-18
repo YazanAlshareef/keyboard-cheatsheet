@@ -20,7 +20,7 @@ function render() {
     tag.className = "app";
     tag.textContent = s.app;
     li.append(text, keys, tag);
-    li.addEventListener("click", () => { active = i; copy(); });
+    li.addEventListener("click", () => { active = i; render(); copy(); });
     return li;
   }));
   count.textContent = `${shown.length} shortcut${shown.length === 1 ? "" : "s"}`;
