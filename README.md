@@ -21,7 +21,7 @@ npm test
 npm start
 ```
 
-Then open http://localhost:8000. You need Node 18 or newer, and Python 3 to serve the files.
+Then open http://localhost:8000. You need Node 20 or newer, and Python 3 to serve the files.
 
 ## What it does
 
